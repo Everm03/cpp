@@ -2,14 +2,15 @@
 
 using namespace std;
 
-int main(int, char const *[])
+int main(int argc, char const *argv[])
 {
     // datos de entrada 
     double subtotal = 0;
     double total = 0;
+    double impuesto = 0.15;
     int descuento = 0;
+    double calculoDescuento = 0;
     double calculoImpuesto = 0;
-    char estaExenta;
 
     cout << "Ingrese el subtotal de la factura: ";
     cin >> subtotal;
@@ -17,26 +18,15 @@ int main(int, char const *[])
     cout << "Ingrese el descuento (0, 10, 15, 20): ";
     cin >> descuento;
 
-    cout << "La factura esta Exenta S / N: ";
-    cin >> estaExenta;
-
-    if (estaExenta == 's'|| estaExenta == 'S')
-    {
-        calculoImpuesto = 0;
-    }
-        else 
-              if (estaExenta == 'n'|| estaExenta == 'N')
-            {
-                calculoImpuesto = subtotal * 0.15;
-
-            }
-
     //Proceso
-    total = subtotal + calculoImpuesto;
+    calculoDescuento = (subtotal * descuento) / 100;
+    calculoImpuesto = (subtotal - calculoDescuento) * 0.15;
+    total = subtotal - calculoDescuento + calculoImpuesto;
 
     //Salida
     cout << endl;
     cout << "Total a pagar:" << total;
 
-    return 0;
+    return 0; 
+    
 }
